@@ -56,7 +56,7 @@
    ```
    https://www.mongodb.com/
    ```
-4. Enter your API in `config.js`
+4. Enter your enter your Discord bot token and mongodb connection string in `config.js`
    ```js
    module.exports = {
         // Bot token
@@ -76,9 +76,12 @@
 
 <!-- CONTACT -->
 ## Contact
-
+```
 Discord - RougeShadow#0680 
+```
+```
 Email - Damianisaacs@live.com
+```
 Project Link: [https://github.com/Dsiman/Kronos/](https://github.com/Dsiman/Kronos/)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
