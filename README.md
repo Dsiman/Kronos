@@ -35,8 +35,7 @@
   ```sh
   npm install npm@latest -g
   ```
-* Discord token
-  You will need to obtain a Bot TOKEN  
+* You will need to obtain a Discord Bot TOKEN  
   ```sh
   https://discord.com/developers/applications
   ```
