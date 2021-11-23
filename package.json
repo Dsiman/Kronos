@@ -1,0 +1,17 @@
+{
+  "name": "kronos",
+  "version": "1.0.0",
+  "description": "Bot to log playtime to a mongo database",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "nstart": "nodemon index.js"
+  },
+  "author": "Damianisaacs@live.com",
+  "license": "ISC",
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "discord.js": "^13.3.1",
+    "mongoose": "^6.0.13"
+  }
+}
