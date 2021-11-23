@@ -111,7 +111,8 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 <!-- CONTACT -->
 ## Contact
 
-Damian Isaacs - [Discord_handle](RougeShadow#0680) - Damianisaacs@live.com
+Damian Isaacs - Discord handle RougeShadow#0680 
+Email - Damianisaacs@live.com
 
 Project Link: [https://github.com/Dsiman/Kronos/](https://github.com/Dsiman/Kronos/)
 
