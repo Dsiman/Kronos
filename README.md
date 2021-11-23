@@ -87,9 +87,9 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
    npm install
    ```
 3. Make a mongodb database to store your sessions
-  ```
-  https://www.mongodb.com/
-  ```
+   ```
+   https://www.mongodb.com/
+   ```
 4. Enter your API in `config.js`
    ```js
    module.exports = {
