@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { Client, Collection, Intents } = require("discord.js");
 const fs = require('fs');
 const ascii = require("ascii-table");
@@ -34,7 +35,7 @@ eventarray = [];
 
 //define a table for the arrays to populate
 var table = new ascii('Loaded Files')
-    .setHeading('Function', 'Event')
+    .setHeading('Function', 'Events')
     .setAlign(0, ascii.CENTER)
     .setAlign(1, ascii.CENTER)
     .setAlign(2, ascii.CENTER);
@@ -57,7 +58,7 @@ fs.readdir('./functions/', async (err, files) => {
 fs.readdir('./events/', async (err, files) => {
     files.forEach( file => {
         if (!file.endsWith('.js')) return;
-        let event = require(`./Events/${file}`);
+        let event = require(`./events/${file}`);
         if (event.once) {
             client.once(event.name, (...args) => event.execute(...args));
         } else {
@@ -88,7 +89,7 @@ setTimeout(
         {
             try{
                 //Connect to Discord
-                await client.login(client.config.token)
+                await client.login(process.env.TOKEN)
                 
                 //connect to Mongoose(MongoDB API)
                 await client.functions.get('mongoose')(client);
