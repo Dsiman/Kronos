@@ -11,7 +11,7 @@ module.exports = (client) => {
 		};
 		var table = new ascii('Mongoose connection status!');
 
-		mongoose.connect(client.config.mongoURI, dbOptions, (err) => {
+		mongoose.connect(process.env.mongoURI, dbOptions, (err) => {
 			if (err) {
 				table.addRow('Status', 'Failed');
 				table.addRow('Error', err);

@@ -11,7 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "ascii-table": "^0.0.9",
+    "auto-git-update": "^2.0.2",
     "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0",
     "mongoose": "^6.0.13"
+  },
+  "engines": {
+    "node": "17.1.0"
   }
 }

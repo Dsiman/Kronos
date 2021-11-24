@@ -27,6 +27,7 @@
 * [ascii-table](https://www.npmjs.com/package/ascii-table)
 * [discord.js](https://discord.js.org/#/)
 * [mongoose](https://mongoosejs.com/)
+* [dotenv](https://github.com/motdotla/dotenv)
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Prerequisites
