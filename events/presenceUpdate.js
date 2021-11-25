@@ -3,8 +3,9 @@ module.exports = {
     name : 'presenceUpdate',
     once : false,
     description : 'Runs on a presenceUpdate',
-    async execute(oldMember, newMember) {
+    async execute(oldMember, newMember) {     
         const client = global.client;
+
         await client.functions.get('sessionmanager')(oldMember, newMember)
 
         /* If you wanted to quickly populate the database with a user's info, uncomment this and wait for a couple days.
