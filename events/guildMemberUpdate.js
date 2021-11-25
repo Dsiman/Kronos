@@ -4,7 +4,6 @@ module.exports = {
     once : false,
     description : 'Runs when a guildmember changes there member',
     async execute(oldMember, newMember) {
-        const client = global.client;
         try {
             await client.functions.get('profiles')(newMember, 'Update')
         } catch (error) { console.error(error) }

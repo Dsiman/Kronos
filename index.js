@@ -6,11 +6,10 @@ const AutoGitUpdate = require('auto-git-update');
 const aguconfig = {
     repository: 'https://github.com/Dsiman/Kronos',
     tempLocation: '/',
-    executeOnComplete: 'node start',
+    executeOnComplete: 'npm start',
     exitOnComplete: true  
 }
 const updater = new AutoGitUpdate(aguconfig);
-updater.autoUpdate();
 
 //discord.js client
 const client = new Client({
@@ -105,6 +104,17 @@ setTimeout(
                 
                 //Log Arrays into console
                 console.log(printarray());
+
+                //Check for updates
+                setInterval(
+                    async function() 
+                        {
+                            try{
+                                updater.autoUpdate();
+                            } catch (error) { console.error(error) }
+                        }, 
+                    6000
+                )
 
             } catch (error) { console.error(error) }
         },
