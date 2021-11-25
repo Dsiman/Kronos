@@ -88,8 +88,8 @@ setTimeout(
     async function()  
         {
             try{
-                //Connect to Discord
-                await client.login(process.env.TOKEN)
+                //Connect to Discord 
+                await client.login(process.env.token)
                 
                 //connect to Mongoose(MongoDB API)
                 await client.functions.get('mongoose')(client);
