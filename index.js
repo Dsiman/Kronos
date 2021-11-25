@@ -2,14 +2,6 @@ require('dotenv').config()
 const { Client, Collection, Intents } = require("discord.js");
 const fs = require('fs');
 const ascii = require("ascii-table");
-const AutoGitUpdate = require('auto-git-update');
-const aguconfig = {
-    repository: 'https://github.com/Dsiman/Kronos',
-    tempLocation: '/',
-    executeOnComplete: 'npm start',
-    exitOnComplete: true  
-}
-const updater = new AutoGitUpdate(aguconfig);
 
 //discord.js client
 const client = new Client({
@@ -104,17 +96,6 @@ setTimeout(
                 
                 //Log Arrays into console
                 console.log(printarray());
-
-                //Check for updates
-                setInterval(
-                    async function() 
-                        {
-                            try{
-                                updater.autoUpdate();
-                            } catch (error) { console.error(error) }
-                        }, 
-                    6000
-                )
 
             } catch (error) { console.error(error) }
         },
