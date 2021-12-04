@@ -1,4 +1,4 @@
 module.exports = {
-    Profile: require('./profile'),
-    Sessions: require('./sessions'),
+    activities: require('./activities'),
+    guild: require('./guild'),
 };

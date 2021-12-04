@@ -93,6 +93,9 @@ setTimeout(
                 
                 //connect to Mongoose(MongoDB API)
                 await client.functions.get('mongoose')(client);
+
+                //log information guilds,users,status per minute
+                await client.functions.get('timer')();
                 
                 //Log Arrays into console
                 console.log(printarray());
@@ -100,4 +103,4 @@ setTimeout(
             } catch (error) { console.error(error) }
         },
     3000
-)
+);
