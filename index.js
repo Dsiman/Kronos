@@ -26,9 +26,9 @@ const client = new Client({
 
 // Collections
 client.functions = new Collection();
-client.config = require('./config.js');
 //make the client global
 global.client = client;
+global.seconds = true;
 //print arrays
 functionarray = [];
 eventarray = [];

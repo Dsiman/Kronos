@@ -1,8 +1,9 @@
 client = global.client
-const { guild, activities } = require('../models');
+const { guilds, activities } = require('../models');
 var _ = require('lodash');
 
 module.exports = async (date) => {
+    console.time('Guilds/Activities update');
     // Guild status object
     var guildact = {
         date: date,
@@ -14,10 +15,10 @@ module.exports = async (date) => {
         var bot = 0;
         // Handle guilds
         // check if the mongoose database has a record for this guild
-        let guilddb = await guild.findOne({ id: vguild.id })
+        let guilddb = await guilds.findOne({ id: vguild.id })
         // Create a new guild record if one does not exist
         if (!guilddb) {
-            guilddb = new guild({
+            guilddb = new guilds({
                 id: vguild.id,
                 name: vguild.name,
             })
@@ -78,4 +79,5 @@ module.exports = async (date) => {
     // save the activity
     act = new activities(guildact)
     await act.save()
+    console.timeEnd('Guilds/Activities update');
 }

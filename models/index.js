@@ -1,4 +1,4 @@
 module.exports = {
     activities: require('./activities'),
-    guild: require('./guild'),
+    guilds: require('./guilds'),
 };
