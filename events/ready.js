@@ -1,5 +1,8 @@
 const asciiTable = require('ascii-table');
 const discord = require("discord.js");
+const { Routes } = require('discord-api-types/v9');
+const { REST } = require('@discordjs/rest');
+const rest = new REST({ version: '9' }).setToken(process.env.token);
 
 module.exports = {
     name: "ready",
@@ -24,6 +27,17 @@ module.exports = {
                 type: "LISTENING"
             }
         });
+
+        // update slash commands
+        try {
+            await rest.put(
+                Routes.applicationGuildCommands(client.user.id, '239310955639603200'),
+                { body: slashcommandarray },
+            );
+            table.addRow('Slash Commands', 'Updated');
+        } catch (error) {
+            console.error(error);
+        }
         
         // log connection table
         console.log(table.toString());

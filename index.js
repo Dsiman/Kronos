@@ -26,19 +26,36 @@ const client = new Client({
 
 // Collections
 client.functions = new Collection();
+client.commands = new Collection();
 //make the client global
 global.client = client;
 global.seconds = true;
 //print arrays
+commandarray = [];
+slashcommandarray = [];
 functionarray = [];
 eventarray = [];
 
 //define a table for the arrays to populate
 var table = new ascii('Loaded Files')
-    .setHeading('Function', 'Events')
+    .setHeading('Command', 'Function', 'Event')
     .setAlign(0, ascii.CENTER)
     .setAlign(1, ascii.CENTER)
     .setAlign(2, ascii.CENTER);
+
+//Commands handler
+fs.readdir('./commands/', async (err, files) => {
+    files.forEach( file => {
+        if (!file.endsWith('.js')) return;
+        let command = require(`./commands/${file}`);
+        client.commands.set(command.data.name, command);
+        commandarray.push(command.data.name);
+        slashcommandarray.push(command.data.toJSON());
+        if (err) { 
+            return console.error;      
+        }
+    });
+});
 
 //Function handler
 fs.readdir('./functions/', async (err, files) => {
@@ -73,13 +90,12 @@ fs.readdir('./events/', async (err, files) => {
 
 //Move the arrays to ascii table
 function printarray() {
-    //Find the biggest array
-    var max = Math.max(functionarray.length, eventarray.length);
-    //make and print loaded functions and events
+    //Fimd the biggest array
+    var max = Math.max(commandarray.length, functionarray.length, eventarray.length);
+    //make and print loaded commands, functions, and events
     for (i = 0; i < max; i++) {
-        table.addRow(functionarray[i], eventarray[i]);
+        table.addRow(commandarray[i], functionarray[i], eventarray[i]);
     }
-
     return table.toString();
 }
 
