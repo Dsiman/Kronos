@@ -68,17 +68,21 @@ module.exports = async (channels) => {
                 }
             }
         }
-        // Edit the voicechannel name
-        if (channels.length <= 3) {
-            // if there is only 3 channels then use the icon
-            voicechannel.setName(`${icon[channels[i].place-1]} ${name} ${time}`); 
-            console.timeEnd('top')
-            continue;
-        } else {
-            // if there are more than 3 channels just use name and time FOR NOW
-            voicechannel.setName(`${name} ${time}`);
-            console.timeEnd('top')
-            continue;
+        try {
+            // Edit the voicechannel name
+            if (channels.length <= 3) {
+                // if there is only 3 channels then use the icon
+                voicechannel.setName(`${icon[channels[i].place-1]} ${name} ${time}`); 
+                console.timeEnd('top')
+                continue;
+            } else {
+                // if there are more than 3 channels just use name and time FOR NOW
+                voicechannel.setName(`${name} ${time}`);
+                console.timeEnd('top')
+                continue;
+            }
+        } catch (error) {
+            console.log(error)
         }
     }
 }
