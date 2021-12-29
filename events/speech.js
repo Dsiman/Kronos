@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const prism = require('prism-media');
 const {Duplex} = require('stream');
-const { quotes } = require('../models');
+const { quotes, guilds } = require('../models');
 // add event to Discord client
 addSpeechEvent(global.client);
 
@@ -12,9 +12,27 @@ module.exports = {
     once : false,
     description : 'Runs when a speech speaks',
     async execute(msg) {
+		// ignore bots
 		if (msg.author.bot) return;
+		// ignore if message is not a parceable voice message
         if (msg.content != undefined) {
+			// ignore the user if they are opted out
+			// get the guild
+			var guild = await guilds.findOne({  guildID: msg.guild.id});
+			// get the user from guild
+			var profile = guild.users.find(x => x.id === msg.author.id);
+			// if user is opted out of recording, return
+			if (profile.opt.Speech === false) return;
 			console.time(`speech ${msg.author.username}`);
+			// voice commands HERE
+			//
+			//
+			//
+			// if user is oped out of recording, return
+			if (profile.opt.Record === false) {
+				console.timeEnd(`speech ${msg.author.username}`);
+				return;
+			} 
 			// Timestamp
 			var date = new Date();
 			var timestamp = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}-${date.getHours()}-${date.getMinutes()}-${date.getSeconds()}`;

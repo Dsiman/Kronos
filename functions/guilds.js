@@ -3,7 +3,9 @@ const { guilds, activities } = require('../models');
 var _ = require('lodash');
 
 module.exports = async (date) => {
-    console.time('Guilds/Activities update');
+    let timestamp = new Date().toLocaleTimeString();
+    console.log(`////////////////////`)
+    console.time(`Status, Activitiies, And Guild update\nTimestamp: ${timestamp}\nCompleted`);
     // Guild status object
     var guildact = {
         date: date,
@@ -21,6 +23,9 @@ module.exports = async (date) => {
             guilddb = new guilds({
                 id: vguild.id,
                 name: vguild.name,
+                rename: {},
+                omit: [],
+                games: {}
             })
             await guilddb.save()
         }
@@ -48,14 +53,24 @@ module.exports = async (date) => {
             }
             // if users does not contain the user
             if (!guilddb.users.filter(user => user.id === member.id).length > 0) {
+                user.opt = {
+                    Status: true,
+                    Activity: true,
+                    Speech: false,
+                    Record: false
+                }
                 // add the user to the guild
                 guilddb.users.push(user)
             }
+            var useropt = guilddb.users.filter(user => user.id === member.id)[0].opt
+            delete user.opt
             // if user changes
             if (!_.isEqual(user, guilddb.users.filter(user => user.id === member.id)[0])){
+
                 // get the user index from the guilddb
                 let index = _.findIndex(guilddb.users, { id: member.id })
                 // update the user
+                user.opt = useropt
                 guilddb.users[index] = user
             }
         }
@@ -79,5 +94,5 @@ module.exports = async (date) => {
     // save the activity
     act = new activities(guildact)
     await act.save()
-    console.timeEnd('Guilds/Activities update');
+    console.timeEnd(`Status, Activitiies, And Guild update\nTimestamp: ${timestamp}\nCompleted`);
 }

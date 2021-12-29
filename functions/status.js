@@ -18,6 +18,5 @@ module.exports = async (date, member, guild) => {
             activity.activities = o;
         }
     }
-    //const mergedS = Object.assign({ _id: mongoose.Types.ObjectId() }, activity);
     return activity;
 }

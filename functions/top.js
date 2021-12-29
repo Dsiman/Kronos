@@ -19,7 +19,8 @@ module.exports = async (channels) => {
     var rename = [];
     var omit = [];
     for (let i = 0; i < channels.length; i++) {
-        console.time('top')
+        let timestamp = new Date().toLocaleTimeString();
+        console.time(`\nChannel Function: TOP\nGuild ID: ${channels[i].guild}\nChannel ID: ${channels[i].channel}\nTimestamp: ${timestamp}\nCompleted`)
         // attempt to get the guild from the database and fill the function cache
         if (gamedata[channels[i].timeframe].length === 0) {
             var datetime = await gettime(channels[i].timeframe)
@@ -44,8 +45,8 @@ module.exports = async (channels) => {
             }
         }
         // end if there isnt any gametime data
-        if (gamedata[channels[i].timeframe].length === 0) { 
-            console.timeEnd('top')
+        if (gamedata[channels[i].timeframe].length === 0) {
+            console.timeEnd(`\nChannel Function: TOP\nGuild ID: ${channels[i].guild}\nChannel ID: ${channels[i].channel}\nTimestamp: ${timestamp}\nCompleted`)
             continue;
         }
         // get guild
@@ -73,12 +74,12 @@ module.exports = async (channels) => {
             if (channels.length <= 3) {
                 // if there is only 3 channels then use the icon
                 voicechannel.setName(`${icon[channels[i].place-1]} ${name} ${time}`); 
-                console.timeEnd('top')
+                console.timeEnd(`\nChannel Function: TOP\nGuild ID: ${channels[i].guild}\nChannel ID: ${channels[i].channel}\nTimestamp: ${timestamp}\nCompleted`)
                 continue;
             } else {
                 // if there are more than 3 channels just use name and time FOR NOW
                 voicechannel.setName(`${name} ${time}`);
-                console.timeEnd('top')
+                console.timeEnd(`\nChannel Function: TOP\nGuild ID: ${channels[i].guild}\nChannel ID: ${channels[i].channel}\nTimestamp: ${timestamp}\nCompleted`)
                 continue;
             }
         } catch (error) {
@@ -121,7 +122,8 @@ async function pullgamesfrommonth(first, last, guildid) {
     var organized = [];
     var found = false
     // get activities from the database where the date is greater than the first date and less than the last date
-    var topgames = await activities.find({date: { $gte: first }, date: { $lte: last }});
+
+    var topgames = await activities.find({date: { $gte:first,  $lte:last }});
     // for each activity
     for (var i = 0, len = topgames.length; i < len; i++) {
         // for each guild in the guilds object

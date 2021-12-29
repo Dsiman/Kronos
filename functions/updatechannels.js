@@ -2,7 +2,8 @@ const { guilds } = require('../models');
 client = global.client;
 
 module.exports = async () => {
-    console.time('updatechannels');
+    let timestamp = new Date().toLocaleTimeString();
+    console.time(`\nChannel Function Handler\nTimestamp: ${timestamp}\nCompleted`);
     var functions = {}
     for (let i = 0; i < client.guilds.cache.size; i++) {
         let vguild = client.guilds.cache.at(i)
@@ -34,7 +35,7 @@ module.exports = async () => {
         }
     }
     await channelfunctions(functions)
-    console.timeEnd('updatechannels');
+    console.timeEnd(`\nChannel Function Handler\nTimestamp: ${timestamp}\nCompleted`);
 };
 
 async function channelfunctions(functions) {
